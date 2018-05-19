@@ -2,9 +2,10 @@ require 'rails_helper'
 
 describe 'manager can add ingredients through /ingredients/new' do
   scenario 'sees new ingredients form' do
-    visit new_ingredients_path
+    visit new_ingredient_path
 
     expect(page).to have_link('Create Ingredients')
+    expect(page).to have_field('item')
   end
 end
 
