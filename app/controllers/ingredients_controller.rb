@@ -9,14 +9,18 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.create(ingredient_params)
-    if params[:commit] == 'Save and Add More Ingredients'
+    if params[:commit] == 'Save and Add More Ingredients' && @ingredient.save
       flash[:success] = "#{@ingredient.item} added!"
 
       redirect_to new_ingredient_path
-    elsif params[:commit] == 'Create Ingredients'
+    elsif params[:commit] == 'Create Ingredients' && @ingredient.save
       flash[:success] = "#{@ingredient.item} added!"
 
       redirect_to ingredients_path
+    else
+      flash[:error] = "Really!? there is only one field to complete... try again!"
+
+      redirect_to new_ingredient_path
     end
   end
 
