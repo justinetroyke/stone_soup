@@ -10,12 +10,13 @@ describe 'manager can add ingredients through /ingredients/new' do
   end
 
   scenario 'manager adds new ingredient and directs to show' do
-    item = 'onion'
+    item = 'Onion'
     heading = 'Available Ingredients'
     visit new_ingredient_path
 
     fill_in 'ingredient[item]', with: item
-    click_button 'Create Ingredient'
+    click_button 'Create Ingredients'
+    save_and_open_page
 
     expect(current_path).to eq ingredients_path
     expect(page).to have_content item
