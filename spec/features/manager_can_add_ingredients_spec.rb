@@ -4,8 +4,22 @@ describe 'manager can add ingredients through /ingredients/new' do
   scenario 'sees new ingredients form' do
     visit new_ingredient_path
 
+    expect(page).to have_button('Save and Add More Ingredients')
     expect(page).to have_button('Create Ingredient')
     expect(page).to have_field('ingredient[item]')
+  end
+
+  scenario 'manager adds new ingredient and directs to show' do
+    item = 'onion'
+    heading = 'Available Ingredients'
+    visit new_ingredient_path
+
+    fill_in 'ingredient[item]', with: item
+    click_button 'Create Ingredient'
+
+    expect(current_path).to eq ingredients_path
+    expect(page).to have_content item
+    expect(page).to have_content heading
   end
 end
 
