@@ -4,8 +4,8 @@ describe 'manager can add ingredients through /ingredients/new' do
   scenario 'sees new ingredients form' do
     visit new_ingredient_path
 
-    expect(page).to have_link('Create Ingredients')
-    expect(page).to have_field('item')
+    expect(page).to have_button('Create Ingredient')
+    expect(page).to have_field('ingredient[item]')
   end
 end
 
