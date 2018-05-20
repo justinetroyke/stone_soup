@@ -6,7 +6,7 @@ describe 'manager can add recipes through /recipes/new' do
     visit new_recipe_path
 
     expect(page).to have_button(button)
-    expect(page).to have_field('recipe[name]')
+    expect(page).to have_field('recipe[title]')
   end
 
   # scenario 'manager adds new recipe and directs to show' do
