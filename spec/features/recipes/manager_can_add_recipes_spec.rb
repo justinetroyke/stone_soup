@@ -12,18 +12,16 @@ describe 'manager can add recipes through /recipes/new' do
   scenario 'manager adds new recipe and directs to show' do
     title = 'Chicken Broccoli'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
-    heading = 'Available Recipes'
+    heading = 'Recipes'
 
     visit new_recipe_path
 
     fill_in 'recipe[title]', with: title
     fill_in 'recipe[directions]', with: directions
     click_button 'Create Recipe'
-    save_and_open_page
 
     expect(current_path).to eq recipes_path
-    expect(page).to have_content title
-    expect(page).to have_content directions
+    expect(page).to have_link title
     expect(page).to have_content heading
   end
   # item = 'Onion'

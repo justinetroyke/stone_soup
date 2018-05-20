@@ -1,11 +1,11 @@
 <h2>Recipes</h2>
 
-<!-- <ul>
+<ul>
   <% @recipes.each do |recipe| %>
   <li class=recipe <%= recipe.title %>
-  <li><%= recipe.item %>
+  <li><%= link_to recipe.title, recipe_path(recipe) %>
     <%= link_to 'Edit', edit_recipe_path(recipe) %>
     <%= link_to 'Delete', recipe_path(recipe), method: 'Delete' %></li>
   </li>
   <% end %>
-</ul> -->
+</ul>
