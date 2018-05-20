@@ -9,7 +9,7 @@ describe 'manager can add recipes through /recipes/new' do
     expect(page).to have_field('recipe[title]')
   end
 
-  scenario 'manager adds new recipe and directs to show' do
+  scenario 'manager adds new recipe and directs to index' do
     title = 'Chicken Broccoli'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
     heading = 'Recipes'
@@ -23,6 +23,24 @@ describe 'manager can add recipes through /recipes/new' do
     expect(current_path).to eq recipes_path
     expect(page).to have_link title
     expect(page).to have_content heading
+  end
+
+  scenario 'manager clicks on recipe link and directs to show' do
+    title = 'Chicken Broccoli'
+    title_2 = 'Taco Salad'
+    directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
+    directions_2 = 'grill chicken, put stuff in bowl, mix'
+    recipe = Recipe.create!(title: title, directions: directions)
+    recipe_2 = Recipe.create!(title: title_2, directions: directions_2)
+
+    visit recipes_path
+
+    click_link title_2
+    save_and_open_page
+
+    expect(current_path).to eq recipe_path(recipe_2)
+    expect(page).to have_content directions_2
+    expect(page).to have_content "#{title_2} Recipe"
   end
   # item = 'Onion'
   # item_2 = 'chicken'
