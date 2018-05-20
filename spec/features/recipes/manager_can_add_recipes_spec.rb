@@ -9,19 +9,32 @@ describe 'manager can add recipes through /recipes/new' do
     expect(page).to have_field('recipe[title]')
   end
 
-  # scenario 'manager adds new recipe and directs to show' do
-  #   item = 'Onion'
-  #   heading = 'Available Recipes'
-  #   button_2 = 'Create Recipe'
-  #   visit new_recipe_path
+  scenario 'manager adds new recipe and directs to show' do
+    title = 'Chicken Broccoli'
+    directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
+    heading = 'Available Recipes'
+
+    visit new_recipe_path
+
+    fill_in 'recipe[title]', with: title
+    fill_in 'recipe[directions]', with: directions
+    click_button 'Create Recipe'
+    save_and_open_page
+
+    expect(current_path).to eq recipes_path
+    expect(page).to have_content title
+    expect(page).to have_content directions
+    expect(page).to have_content heading
+  end
+  # item = 'Onion'
+  # item_2 = 'chicken'
+  # item_3 = 'rice'
+  # item_4 = 'cream of broccoli'
   #
-  #   fill_in 'recipe[item]', with: item
-  #   click_button button_2
-  #
-  #   expect(current_path).to eq recipes_path
-  #   expect(page).to have_content item
-  #   expect(page).to have_content heading
-  # end
+  # ingredient = Ingredient.create!(item: item)
+  # ingredient_2 = Ingredient.create!(item: item_2)
+  # ingredient_3 = Ingredient.create!(item: item_3)
+  # ingredient_4 = Ingredient.create!(item: item_4)
   #
   # scenario 'manager adds new recipe and clicks add more' do
   #   item = 'Onion'
