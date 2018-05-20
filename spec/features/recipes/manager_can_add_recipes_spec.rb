@@ -42,15 +42,15 @@ describe 'manager can add recipes through /recipes/new' do
     expect(page).to have_content directions_2
     expect(page).to have_content "#{title_2} Recipe"
   end
+
   # item = 'Onion'
-  # item_2 = 'chicken'
-  # item_3 = 'rice'
-  # item_4 = 'cream of broccoli'
-  #
+  # item2 = 'chicken'
+  # item3 = 'rice'
+  # item4 = 'cream of broccoli'
   # ingredient = Ingredient.create!(item: item)
-  # ingredient_2 = Ingredient.create!(item: item_2)
-  # ingredient_3 = Ingredient.create!(item: item_3)
-  # ingredient_4 = Ingredient.create!(item: item_4)
+  # ingredient_2 = Ingredient.create!(item: item2)
+  # ingredient_3 = Ingredient.create!(item: item3)
+  # ingredient_4 = Ingredient.create!(item: item4)
   #
   # scenario 'manager adds new recipe and clicks add more' do
   #   item = 'Onion'
