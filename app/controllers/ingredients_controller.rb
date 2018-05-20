@@ -13,7 +13,7 @@ class IngredientsController < ApplicationController
       flash[:success] = "#{@ingredient.item} added!"
 
       redirect_to new_ingredient_path
-    elsif params[:commit] == 'Create Ingredients' && @ingredient.save
+    elsif params[:commit] == 'Create Ingredient' && @ingredient.save
       flash[:success] = "#{@ingredient.item} added!"
 
       redirect_to ingredients_path
@@ -22,6 +22,28 @@ class IngredientsController < ApplicationController
 
       redirect_to new_ingredient_path
     end
+  end
+
+  def edit
+    @ingredient = Ingredient.find(params[:id])
+  end
+
+  def update
+        @ingredient = Ingredient.find(params[:id])
+
+        if @ingredient.update(ingredient_params)
+            redirect_to ingredients_path
+        else
+            render 'Edit'
+        end
+    end
+
+  def destroy
+    ingredient = Ingredient.find(params[:id])
+    ingredient.destroy
+
+    flash[:success] = "#{ingredient.item} was successfully deleted!"
+    redirect_to ingredients_path
   end
 
 private
