@@ -54,8 +54,7 @@ describe 'manager can add ingredients through /ingredients/new' do
     visit new_ingredient_path
 
     click_button button
-    save_and_open_page
-    
+
     expect(current_path).to eq new_ingredient_path
     expect(page).to have_content error_message
 
