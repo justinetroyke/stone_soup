@@ -4,6 +4,7 @@ describe 'manager can add ingredients through /ingredients/new' do
   scenario 'sees new ingredients form' do
     button = 'Save and Add More Ingredients'
     button_2 = 'Create Ingredient'
+
     visit new_ingredient_path
 
     expect(page).to have_button(button)
