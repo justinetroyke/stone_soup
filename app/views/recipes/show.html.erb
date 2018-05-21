@@ -1,6 +1,7 @@
 <h2><%= @recipe.title %> Recipe</h2>
 <br>
-
+<%= link_to 'Delete', recipe_path(@recipe), method: 'Delete' %>
+<br>
 Directions:
 <br>
 <%= @recipe.directions %>
