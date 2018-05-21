@@ -36,7 +36,6 @@ describe 'manager can add recipes through /recipes/new' do
     visit recipes_path
 
     click_link title_2
-    save_and_open_page
 
     expect(current_path).to eq recipe_path(recipe_2)
     expect(page).to have_content directions_2

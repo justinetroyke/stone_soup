@@ -29,14 +29,13 @@ class IngredientsController < ApplicationController
   end
 
   def update
-        @ingredient = Ingredient.find(params[:id])
-
-        if @ingredient.update(ingredient_params)
-            redirect_to ingredients_path
-        else
-            render 'Edit'
-        end
+    @ingredient = Ingredient.find(params[:id])
+    if @ingredient.update(ingredient_params)
+      redirect_to ingredients_path
+    else
+      render 'Edit'
     end
+  end
 
   def destroy
     ingredient = Ingredient.find(params[:id])
