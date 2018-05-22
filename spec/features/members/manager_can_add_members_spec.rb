@@ -6,7 +6,6 @@ describe 'manager can add members through /members/new' do
     button_2 = 'Create Member'
 
     visit new_member_path
-    save_and_open_page
 
     expect(page).to have_button(button)
     expect(page).to have_button(button_2)
@@ -14,20 +13,26 @@ describe 'manager can add members through /members/new' do
     expect(page).to have_field('member[type]')
     expect(page).to have_field('member[email]')
   end
-  #
-  # scenario 'manager adds new member and directs to show' do
-  #   item = 'Onion'
-  #   heading = 'Available Members'
-  #   button_2 = 'Create Member'
-  #   visit new_member_path
-  #
-  #   fill_in 'member[item]', with: item
-  #   click_button button_2
-  #
-  #   expect(current_path).to eq members_path
-  #   expect(page).to have_content item
-  #   expect(page).to have_content heading
-  # end
+
+  scenario 'manager adds new member and directs to show' do
+    name = 'Justine Troyke'
+    type = 'Member'
+    email = 'bringit@poop.com'
+    heading = 'Stone Soup Members'
+    button_2 = 'Create Member'
+
+    visit new_member_path
+
+    fill_in 'member[name]', with: name
+    fill_in 'member[type]', with: type
+    fill_in 'member[email]', with: email
+
+    click_button button_2
+
+    expect(current_path).to eq members_path
+    expect(page).to have_content name
+    expect(page).to have_content heading
+  end
   #
   # scenario 'manager adds new member and clicks add more' do
   #   item = 'Onion'
