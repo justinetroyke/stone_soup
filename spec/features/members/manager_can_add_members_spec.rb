@@ -65,20 +65,27 @@ describe 'manager can add members through /members/new' do
     expect(page).to have_content name_2
   end
 
-  # scenario 'manager gets error message when no item is entered' do
-  #   error_message = "Really!? there is only one field to complete... try again!"
-  #   button = 'Save and Add Another Members'
-  #   button_2 = 'Create Member'
-  #   visit new_member_path
-  #
-  #   click_button button
-  #
-  #   expect(current_path).to eq new_member_path
-  #   expect(page).to have_content error_message
-  #
-  #   click_button button_2
-  #
-  #   expect(current_path).to eq new_member_path
-  #   expect(page).to have_content error_message
-  # end
+  scenario 'manager gets error message when no name is entered' do
+    type = 'Member'
+    email = 'bringit@poop.com'
+    error_message = 'Check all fields have been completed and try again!'
+    button = 'Save and Add Another Member'
+    button_2 = 'Create Member'
+
+    visit new_member_path
+
+    fill_in 'member[type]', with: type
+    fill_in 'member[email]', with: email
+    click_button button
+
+    expect(current_path).to eq new_member_path
+    expect(page).to have_content error_message
+
+    fill_in 'member[type]', with: type
+    fill_in 'member[email]', with: email
+    click_button button_2
+
+    expect(current_path).to eq new_member_path
+    expect(page).to have_content error_message
+  end
 end

@@ -18,7 +18,7 @@ class MembersController < ApplicationController
 
       redirect_to members_path
     else
-      flash[:error] = "Check all fields have been completed and try again!"
+      flash[:error] = 'Check all fields have been completed and try again!'
 
       redirect_to new_member_path
     end
