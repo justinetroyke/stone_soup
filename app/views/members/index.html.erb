@@ -1,0 +1,11 @@
+<h2>Stone Soup Members</h2>
+
+<ul>
+  <% @members.each do |member| %>
+  <li class=member <%= member.name %>
+  <li><%= member.name %>
+    <%= link_to 'Edit', edit_member_path(member) %>
+    <%= link_to 'Delete', member_path(member), method: 'Delete' %></li>
+  </li>
+  <% end %>
+</ul>
