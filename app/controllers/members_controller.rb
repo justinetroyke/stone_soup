@@ -23,6 +23,26 @@ class MembersController < ApplicationController
       redirect_to new_member_path
     end
   end
+   def edit
+     @member = Member.find(params[:id])
+   end
+
+   def update
+     @member = Member.find(params[:id])
+     if @member.update(member_params)
+       redirect_to members_path
+     else
+       render 'Edit'
+     end
+   end
+
+   def destroy
+     member = Member.find(params[:id])
+     member.destroy
+
+     flash[:success] = "#{member.name} was successfully deleted!"
+     redirect_to members_path
+   end
 
   private
     def member_params
