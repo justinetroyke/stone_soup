@@ -2,10 +2,11 @@ require 'rails_helper'
 
 describe 'manager can add members through /members/new' do
   scenario 'sees new members form' do
-    button = 'Save and Add Another Members'
+    button = 'Save and Add Another Member'
     button_2 = 'Create Member'
 
     visit new_member_path
+    save_and_open_page
 
     expect(page).to have_button(button)
     expect(page).to have_button(button_2)

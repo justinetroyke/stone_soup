@@ -1,0 +1,13 @@
+<%= form_for @member do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :type %>
+  <%= f.text_field :type %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.submit 'Save and Add Another Member' %>
+  <%= f.submit 'Create Member' %>
+<% end %>
