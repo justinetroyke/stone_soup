@@ -6,7 +6,7 @@ describe 'manager can edit ingredients' do
     title_2 = 'Green Cluck'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
     directions_2 = 'do the thing'
-    recipe = Recipe.create!(title: title, directions: directions)
+    Recipe.create!(title: title, directions: directions)
 
     visit recipes_path
 
