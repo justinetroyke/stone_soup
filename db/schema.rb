@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_22_191714) do
+ActiveRecord::Schema.define(version: 2018_05_22_214619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "group_members", force: :cascade do |t|
+    t.bigint "member_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_members_on_group_id"
+    t.index ["member_id"], name: "index_group_members_on_member_id"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string "title"
@@ -51,6 +60,8 @@ ActiveRecord::Schema.define(version: 2018_05_22_191714) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "group_members", "groups"
+  add_foreign_key "group_members", "members"
   add_foreign_key "recipe_ingredients", "ingredients"
   add_foreign_key "recipe_ingredients", "recipes"
 end

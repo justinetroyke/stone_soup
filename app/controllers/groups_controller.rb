@@ -31,12 +31,14 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     valid_group = @group.update(group_params)
-    if @group.save
-      flash[:success] = "#{@group.title} updated!"
+    if params[:group][:group_members].nil? && valid_group
+
+      redirect_to group_path(@group)
+    elsif valid_group
+      GroupMemberCreator.new(group_id: params[:id], member_id: group_member_params[:member_id])
 
       redirect_to group_path(@group)
     else
-      flash[:error] = "Please complete all fields"
       render 'Edit'
     end
   end
@@ -52,5 +54,13 @@ class GroupsController < ApplicationController
   private
     def group_params
       params.require(:group).permit(:title, :start)
+    end
+
+    def group_member_params
+      params.require(:group).require(:group_members)
+      .permit(
+        :group_id,
+        :member_id
+      )
     end
 end

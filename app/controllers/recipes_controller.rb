@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
 
       redirect_to recipe_path(@recipe)
     elsif valid_recipe
-      RecipeIngredientCreator.new(params[:id], recipe_ingredient_params)
+      RecipeIngredientCreator.new(recipe_id: params[:id], recipe_ingredients: recipe_ingredient_params)
 
       redirect_to recipe_path(@recipe)
     else
