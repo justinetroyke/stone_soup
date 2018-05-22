@@ -24,6 +24,23 @@ class GroupsController < ApplicationController
     end
   end
 
+  def edit
+    @group = Group.find(params[:id])
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    valid_group = @group.update(group_params)
+    if @group.save
+      flash[:success] = "#{@group.title} updated!"
+
+      redirect_to group_path(@group)
+    else
+      flash[:error] = "Please complete all fields"
+      render 'Edit'
+    end
+  end
+
   private
     def group_params
       params.require(:group).permit(:title, :start)
