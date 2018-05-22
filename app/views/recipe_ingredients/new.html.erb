@@ -1,0 +1,16 @@
+<h2>Add ingredients to recipe here!</h2>
+
+<%= render partial: "form" %>
+<br>
+
+<h3><%= @recipe.title %><h3>
+<br>
+<% @recipe.recipe_ingredients do |recipe_ingredient| %>
+<li>
+  <%= recipe_ingredient.amount %> <%= recipe_ingredient.ingredient_id[:item] %>
+</li>
+<% end %>
+
+<h4>Directions<h4>
+<h5><%= @recipe_ingredients %><h5>
+<h5><%= @recipe.directions %><h5>
