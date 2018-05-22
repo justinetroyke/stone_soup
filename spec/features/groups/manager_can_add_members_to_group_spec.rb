@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'manager can add groups through /groups/new' do
   scenario 'sees new groups form' do
+    title = 'Chicken Broccoli'
+    directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
+    Recipe.create!(title: title, directions: directions)
     button = 'Create Group'
 
     visit new_group_path
@@ -11,6 +14,9 @@ describe 'manager can add groups through /groups/new' do
   end
 
   scenario 'manager adds new group and directs to index' do
+    title = 'Chicken Broccoli'
+    directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
+    Recipe.create!(title: title, directions: directions)
     title = 'Soupers'
     heading = 'Groups'
     start = '2018-05-28'
@@ -19,7 +25,9 @@ describe 'manager can add groups through /groups/new' do
 
     fill_in 'group[title]', with: title
     fill_in 'Start', with: '2018/5/28'
+    select(recipe.title, from: 'recipe')
     click_button 'Create Group'
+    save_and_open_page
 
     expect(current_path).to eq groups_path
     expect(page).to have_link title
