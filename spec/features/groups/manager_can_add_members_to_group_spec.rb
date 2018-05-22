@@ -13,17 +13,17 @@ describe 'manager can add groups through /groups/new' do
   scenario 'manager adds new group and directs to index' do
     title = 'Soupers'
     heading = 'Groups'
-    start = '2018/5/28'
+    start = '2018-05-28'
 
     visit new_group_path
 
     fill_in 'group[title]', with: title
-    select('2018/5/28', from: 'Start')
+    fill_in 'Start', with: '2018/5/28'
     click_button 'Create Group'
 
     expect(current_path).to eq groups_path
     expect(page).to have_link title
-    xpect(page).to have_content start
+    expect(page).to have_content start
     expect(page).to have_content heading
   end
   #
