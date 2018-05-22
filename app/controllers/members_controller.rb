@@ -23,6 +23,18 @@ class MembersController < ApplicationController
       redirect_to new_member_path
     end
   end
+   def edit
+     @member = Member.find(params[:id])
+   end
+
+   def update
+     @member = Member.find(params[:id])
+     if @member.update(member_params)
+       redirect_to members_path
+     else
+       render 'Edit'
+     end
+   end
 
   private
     def member_params
