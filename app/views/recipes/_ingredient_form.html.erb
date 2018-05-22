@@ -1,0 +1,11 @@
+<%= form_for @recipe do |f| %>
+
+  <%= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |recipe_ingredient| %>
+    <%= recipe_ingredient.label :ingredient_amount %>
+    <%= recipe_ingredient.text_field :ingredient_amount %> &nbsp &nbsp
+    <%= recipe_ingredient.label :ingredient_id %>
+    <%= recipe_ingredient.collection_select :ingredient_id, Ingredient.all, :id, :item %>
+  <% end %>
+
+  <%= f.submit 'Add' %>
+<% end %>

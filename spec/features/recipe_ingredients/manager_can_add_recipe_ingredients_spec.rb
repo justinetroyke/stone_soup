@@ -19,36 +19,32 @@ describe 'manager can add ingredients to recipe through' do
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
     recipe = Recipe.create!(title: title, directions: directions)
 
-    visit new_recipe_recipe_ingredient_path(recipe)
+    visit recipe_path(recipe)
 
     expect(page).to have_content recipe.title
     expect(page).to have_content recipe.directions
 
-    fill_in 'recipe_ingredient[ingredient_amount]', with: amount
+    fill_in 'recipe[recipe_ingredients][ingredient_amount]', with: amount
     select(ingredient.item, from: 'Ingredient')
     click_on 'Add'
+    binding.pry
+    expect(page).to have_content(RecipeIngredient.last.ingredient_amount)
 
-    expect(page).to have_content(Recipe_ingredient.last)
-
-    fill_in 'recipe_ingredient[ingredient_amount]', with: amount_2
+    fill_in 'recipe[recipe_ingredients][ingredient_amount]', with: amount_2
     select(ingredient_2.item, from: 'Ingredient')
     click_on 'Add'
 
-    expect(page).to have_content(Recipe_ingredient.last)
+    expect(page).to have_content(RecipeIngredient.last.ingredient_amount)
 
-    fill_in 'recipe_ingredient[ingredient_amount]', with: amount_3
+    fill_in 'recipe[recipe_ingredients][ingredient_amount]', with: amount_3
     select(ingredient_3.item, from: 'Ingredient')
     click_on 'Add'
 
-    expect(page).to have_content(Recipe_ingredient.last)
+    expect(page).to have_content(RecipeIngredient.last)
 
-    fill_in 'recipe_ingredient[ingredient_amount]', with: amount_4
+    fill_in 'recipe[recipe_ingredients][ingredient_amount]', with: amount_4
     select(ingredient_4.item, from: 'Ingredient')
     click_on 'Add'
-
-    expect(page).to have_content(Recipe_ingredient.last)
-
-    click_on recipe
 
     expect(current_path).to eq recipe_path(recipe)
     expect(page).to have_content ingredient

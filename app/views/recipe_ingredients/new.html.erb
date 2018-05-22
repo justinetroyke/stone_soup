@@ -5,9 +5,12 @@
 
 <h3><%= @recipe.title %><h3>
 <br>
-<%= @recipe_ingredients(recipe) do |recipe_ingredient
-<li class=recipe_ingredient_ <%= recipe_ingredient.id %>>
-  <%
+<% @recipe.recipe_ingredients do |recipe_ingredient| %>
+<li>
+  <%= recipe_ingredient.amount %> <%= recipe_ingredient.ingredient_id[:item] %>
+</li>
+<% end %>
+
 <h4>Directions<h4>
 <h5><%= @recipe_ingredients %><h5>
 <h5><%= @recipe.directions %><h5>

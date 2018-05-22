@@ -10,10 +10,11 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
   end
-
+class RecipeIngedient
   def create
     @recipe = Recipe.create(recipe_params)
     if @recipe.save
+      RecipeIngredientCreator.new(recipe_ingredient_params)
       flash[:success] = "#{@recipe.title} added!"
 
       redirect_to recipes_path
@@ -23,7 +24,7 @@ class RecipesController < ApplicationController
       redirect_to new_recipe_path
     end
   end
-
+end
   def edit
     @recipe = Recipe.find(params[:id])
   end
@@ -49,5 +50,14 @@ class RecipesController < ApplicationController
 private
   def recipe_params
     params.require(:recipe).permit(:title, :directions)
+  end
+
+  def recipe_ingredient_params
+    params.require(:recipe_ingredient)
+    .permit(
+      :ingredient_amount,
+      :ingredient_id,
+      :recipe_id
+    )
   end
 end
