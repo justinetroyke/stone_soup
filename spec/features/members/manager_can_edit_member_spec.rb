@@ -5,7 +5,7 @@ describe 'manager can edit members' do
     name = 'Justine Troyke'
     role = 'Member'
     email = 'bringit@poop.com'
-    name_2 = 'JJ Troyke'
+    name2 = 'JJ Troyke'
     Member.create!(name: name, role: role, email: email)
 
     visit members_path
@@ -13,9 +13,9 @@ describe 'manager can edit members' do
     expect(page).to have_content(name)
 
     click_link 'Edit'
-    fill_in 'member[name]', with: name_2
+    fill_in 'member[name]', with: name2
     click_on 'Create Member'
 
-    expect(page).to have_content(name_2)
+    expect(page).to have_content(name2)
   end
 end
