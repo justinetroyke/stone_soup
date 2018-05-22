@@ -29,7 +29,7 @@ class MembersController < ApplicationController
       params.require(:member)
       .permit(
         :name,
-        :type,
+        :role,
         :email
       )
     end
