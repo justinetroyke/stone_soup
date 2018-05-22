@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :recipe_ingredients
   end
   resources :members
-  resources :groups
+  resources :groups do 
+    resources :group_members
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -7,15 +7,14 @@ describe 'manager can add ingredients to recipe through' do
     item3 = 'rice'
     item4 = 'cream of broccoli'
     amount = '1'
-    amount_2 = '12 oz'
-    amount_3 = '3 cups'
-    amount_4 = '2 cans'
+    amount2 = '12 oz'
+    amount3 = '3 cups'
+    amount4 = '2 cans'
     ingredient = Ingredient.create!(item: item)
-    ingredient_2 = Ingredient.create!(item: item2)
-    ingredient_3 = Ingredient.create!(item: item3)
-    ingredient_4 = Ingredient.create!(item: item4)
+    ingredient2 = Ingredient.create!(item: item2)
+    ingredient3 = Ingredient.create!(item: item3)
+    ingredient4 = Ingredient.create!(item: item4)
     title = 'Chicken Broccoli'
-    select_box = 'Ingredient'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
     recipe = Recipe.create!(title: title, directions: directions)
 
@@ -29,30 +28,30 @@ describe 'manager can add ingredients to recipe through' do
     click_on 'Add'
     expect(page).to have_content(RecipeIngredient.last.ingredient_amount)
 
-    fill_in 'recipe[recipe_ingredients][ingredient_amount]', with: amount_2
-    select(ingredient_2.item, from: 'Ingredient')
+    fill_in 'recipe[recipe_ingredients][ingredient_amount]', with: amount2
+    select(ingredient2.item, from: 'Ingredient')
     click_on 'Add'
 
     expect(page).to have_content(RecipeIngredient.last.ingredient_amount)
 
-    fill_in 'recipe[recipe_ingredients][ingredient_amount]', with: amount_3
-    select(ingredient_3.item, from: 'Ingredient')
+    fill_in 'recipe[recipe_ingredients][ingredient_amount]', with: amount3
+    select(ingredient3.item, from: 'Ingredient')
     click_on 'Add'
 
     expect(page).to have_content(RecipeIngredient.last.ingredient_amount)
 
-    fill_in 'recipe[recipe_ingredients][ingredient_amount]', with: amount_4
-    select(ingredient_4.item, from: 'Ingredient')
+    fill_in 'recipe[recipe_ingredients][ingredient_amount]', with: amount4
+    select(ingredient4.item, from: 'Ingredient')
     click_on 'Add'
 
     expect(current_path).to eq recipe_path(recipe)
     expect(page).to have_content ingredient.item
     expect(page).to have_content amount
-    expect(page).to have_content ingredient_2.item
-    expect(page).to have_content amount_2
-    expect(page).to have_content ingredient_3.item
-    expect(page).to have_content amount_3
-    expect(page).to have_content ingredient_4.item
-    expect(page).to have_content amount_4
+    expect(page).to have_content ingredient2.item
+    expect(page).to have_content amount2
+    expect(page).to have_content ingredient3.item
+    expect(page).to have_content amount3
+    expect(page).to have_content ingredient4.item
+    expect(page).to have_content amount4
   end
 end
