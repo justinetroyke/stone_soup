@@ -1,0 +1,12 @@
+<h2><%= @group.title %> Group</h2>
+<%= link_to 'Edit', edit_group_path(@group) %>
+<%= link_to 'Delete', group_path(@group), method: 'Delete' %>
+<br>
+
+Recipe Name:
+<br>
+Start:
+<br>
+<%= @group.start %>
+
+Group Members:

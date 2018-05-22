@@ -26,21 +26,21 @@ describe 'manager can add groups through /groups/new' do
     expect(page).to have_content start
     expect(page).to have_content heading
   end
-  #
-  # scenario 'manager clicks on group link and directs to show' do
-  #   title = 'Chicken Broccoli'
-  #   title_2 = 'Taco Salad'
-  #   directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
-  #   directions_2 = 'grill chicken, put stuff in bowl, mix'
-  #   group = Group.create!(title: title, directions: directions)
-  #   group_2 = Group.create!(title: title_2, directions: directions_2)
-  #
-  #   visit groups_path
-  #
-  #   click_link title_2
-  #
-  #   expect(current_path).to eq group_path(group_2)
-  #   expect(page).to have_content directions_2
-  #   expect(page).to have_content "#{title_2} Group"
-  # end
+
+  scenario 'manager clicks on group link and directs to show' do
+    title = 'Soupers'
+    start = '2018-05-28'
+    title2 = 'Hungry Men'
+    start2 = '2018-05-28'
+    group = Group.create!(title: title, start: start)
+    group2 = Group.create!(title: title2, start: start2)
+
+    visit groups_path
+
+    click_link title2
+
+    expect(current_path).to eq group_path(group2)
+    expect(page).to have_content start2
+    expect(page).to have_content "#{title2} Group"
+  end
 end
