@@ -27,7 +27,6 @@ describe 'manager can add ingredients to recipe through' do
     fill_in 'recipe[recipe_ingredients][ingredient_amount]', with: amount
     select(ingredient.item, from: 'Ingredient')
     click_on 'Add'
-    binding.pry
     expect(page).to have_content(RecipeIngredient.last.ingredient_amount)
 
     fill_in 'recipe[recipe_ingredients][ingredient_amount]', with: amount_2
@@ -40,20 +39,20 @@ describe 'manager can add ingredients to recipe through' do
     select(ingredient_3.item, from: 'Ingredient')
     click_on 'Add'
 
-    expect(page).to have_content(RecipeIngredient.last)
+    expect(page).to have_content(RecipeIngredient.last.ingredient_amount)
 
     fill_in 'recipe[recipe_ingredients][ingredient_amount]', with: amount_4
     select(ingredient_4.item, from: 'Ingredient')
     click_on 'Add'
 
     expect(current_path).to eq recipe_path(recipe)
-    expect(page).to have_content ingredient
-    expect(page).to have_content amount_1
-    expect(page).to have_content ingredient_2
+    expect(page).to have_content ingredient.item
+    expect(page).to have_content amount
+    expect(page).to have_content ingredient_2.item
     expect(page).to have_content amount_2
-    expect(page).to have_content ingredient_3
+    expect(page).to have_content ingredient_3.item
     expect(page).to have_content amount_3
-    expect(page).to have_content ingredient_4
+    expect(page).to have_content ingredient_4.item
     expect(page).to have_content amount_4
   end
 end

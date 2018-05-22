@@ -3,6 +3,13 @@
 <%= link_to 'Delete', recipe_path(@recipe), method: 'Delete' %>
 <br>
 <%= render partial: "ingredient_form" %>
+<ul class=recipe_ingredients>
+  <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+    <% if recipe_ingredient.ingredient %>
+      <li><%= recipe_ingredient.ingredient_amount %>  <%= recipe_ingredient.ingredient.item %></li>
+    <% end %>
+  <% end %>
+</ul>
 Directions:
 <br>
 <%= @recipe.directions %>
