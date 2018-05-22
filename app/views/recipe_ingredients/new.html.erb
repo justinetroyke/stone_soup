@@ -1,0 +1,13 @@
+<h2>Add ingredients to recipe here!</h2>
+
+<%= render partial: "form" %>
+<br>
+
+<h3><%= @recipe.title %><h3>
+<br>
+<%= @recipe_ingredients(recipe) do |recipe_ingredient
+<li class=recipe_ingredient_ <%= recipe_ingredient.id %>>
+  <%
+<h4>Directions<h4>
+<h5><%= @recipe_ingredients %><h5>
+<h5><%= @recipe.directions %><h5>

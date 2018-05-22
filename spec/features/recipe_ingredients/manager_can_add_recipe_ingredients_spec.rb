@@ -15,26 +15,42 @@ describe 'manager can add ingredients to recipe through' do
     ingredient_3 = Ingredient.create!(item: item3)
     ingredient_4 = Ingredient.create!(item: item4)
     title = 'Chicken Broccoli'
+    select_box = 'Ingredient'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
-    heading = 'Recipes'
+    recipe = Recipe.create!(title: title, directions: directions)
 
-    visit new_recipe_path
+    visit new_recipe_recipe_ingredient_path(recipe)
 
-    fill_in 'recipe[title]', with: title
-    fill_in 'recipe[amount_1]', with: amount_1
-    fill_in 'recipe[ingredient_1]', with: ingredient
-    fill_in 'recipe[amount_1]', with: amount_2
-    fill_in 'recipe[ingredient_2]', with: ingredient_2
-    fill_in 'recipe[amount_1]', with: amount_3
-    fill_in 'recipe[ingredient_3]', with: ingredient_3
-    fill_in 'recipe[amount_1]', with: amount_4
-    fill_in 'recipe[ingredient_4]', with: ingredient_4
-    fill_in 'recipe[directions]', with: directions
-    click_button 'Create Recipe'
+    expect(page).to have_content recipe.title
+    expect(page).to have_content recipe.directions
 
-    expect(current_path).to eq recipes_path
-    expect(page).to have_link title
-    expect(page).to have_content heading
+    fill_in 'recipe_ingredient[ingredient_amount]', with: amount
+    select(ingredient.item, from: 'Ingredient')
+    click_on 'Add'
+
+    expect(page).to have_content(Recipe_ingredient.last)
+
+    fill_in 'recipe_ingredient[ingredient_amount]', with: amount_2
+    select(ingredient_2.item, from: 'Ingredient')
+    click_on 'Add'
+
+    expect(page).to have_content(Recipe_ingredient.last)
+
+    fill_in 'recipe_ingredient[ingredient_amount]', with: amount_3
+    select(ingredient_3.item, from: 'Ingredient')
+    click_on 'Add'
+
+    expect(page).to have_content(Recipe_ingredient.last)
+
+    fill_in 'recipe_ingredient[ingredient_amount]', with: amount_4
+    select(ingredient_4.item, from: 'Ingredient')
+    click_on 'Add'
+
+    expect(page).to have_content(Recipe_ingredient.last)
+
+    click_on recipe
+
+    expect(current_path).to eq recipe_path(recipe)
     expect(page).to have_content ingredient
     expect(page).to have_content amount_1
     expect(page).to have_content ingredient_2
