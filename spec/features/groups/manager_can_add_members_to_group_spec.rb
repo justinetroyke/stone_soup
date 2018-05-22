@@ -3,28 +3,29 @@ require 'rails_helper'
 describe 'manager can add groups through /groups/new' do
   scenario 'sees new groups form' do
     button = 'Create Group'
-    
+
     visit new_group_path
 
     expect(page).to have_button(button)
     expect(page).to have_field('group[title]')
   end
-  #
-  # scenario 'manager adds new group and directs to index' do
-  #   title = 'Chicken Broccoli'
-  #   directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
-  #   heading = 'Groups'
-  #
-  #   visit new_group_path
-  #
-  #   fill_in 'group[title]', with: title
-  #   fill_in 'group[directions]', with: directions
-  #   click_button 'Create Group'
-  #
-  #   expect(current_path).to eq groups_path
-  #   expect(page).to have_link title
-  #   expect(page).to have_content heading
-  # end
+
+  scenario 'manager adds new group and directs to index' do
+    title = 'Soupers'
+    heading = 'Groups'
+    start = '2018/5/28'
+
+    visit new_group_path
+
+    fill_in 'group[title]', with: title
+    select('2018/5/28', from: 'Start')
+    click_button 'Create Group'
+
+    expect(current_path).to eq groups_path
+    expect(page).to have_link title
+    xpect(page).to have_content start
+    expect(page).to have_content heading
+  end
   #
   # scenario 'manager clicks on group link and directs to show' do
   #   title = 'Chicken Broccoli'
