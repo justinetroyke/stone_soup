@@ -3,4 +3,7 @@ class Group < ApplicationRecord
   validates :start, presence: true
   has_many :group_members
   belongs_to :recipe
+
+  # def self.assign_ingredients
+  # end
 end

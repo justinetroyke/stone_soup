@@ -2,18 +2,22 @@
 <%= link_to 'Edit', edit_group_path(@group) %>
 <%= link_to 'Delete', group_path(@group), method: 'Delete' %>
 <br>
+<br>
 <%= render partial: "member_form" %>
-<ul class=group_members>
-  <% @group.group_members.each do |group_member| %>
-    <% if group_member.member %>
-      <li><%= group_member.member.name %></li>
-    <% end %>
-  <% end %>
-</ul>
-
-Recipe Name:
+<br>
+<br>
+Recipe Name: <%= @group.recipe.title %>
 <br>
 Start: <%= @group.start %>
 <br>
-
+<br>
 Group Members:
+<ul class=group_members>
+  <% @group.group_members.each do |group_member| %>
+    <% if group_member.member %>
+      <li><%= group_member.member.name %> - <%#= group_member.member.ingredient.item %></li>
+    <% end %>
+  <% end %>
+</ul>
+<br>
+<li><%= link_to 'Assign Ingredients' %><% %></li>

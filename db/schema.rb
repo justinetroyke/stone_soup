@@ -43,8 +43,10 @@ ActiveRecord::Schema.define(version: 2018_05_22_214619) do
     t.string "name"
     t.integer "role", default: 0
     t.string "email"
+    t.bigint "ingredient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_members_on_ingredient_id"
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
@@ -67,6 +69,7 @@ ActiveRecord::Schema.define(version: 2018_05_22_214619) do
   add_foreign_key "group_members", "groups"
   add_foreign_key "group_members", "members"
   add_foreign_key "groups", "recipes"
+  add_foreign_key "members", "ingredients"
   add_foreign_key "recipe_ingredients", "ingredients"
   add_foreign_key "recipe_ingredients", "recipes"
 end
