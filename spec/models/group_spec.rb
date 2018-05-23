@@ -35,7 +35,7 @@ describe Group, type: :model do
       group = Group.create!(title: title, start: start, recipe_id: recipe.id)
       GroupMember.create!(member_id: member.id, group_id: group.id)
       GroupMember.create!(member_id: member2.id, group_id: group.id)
-      binding.pry
+      # binding.pry
       Group.assign_ingredients!(members: group.members, ingredients: recipe.ingredients)
       [member, member2].each do |m|
         expect(m.ingredient_id).to eq(ingredient.id).or(eq(ingredient2.id))

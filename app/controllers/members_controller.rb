@@ -13,10 +13,6 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.create(member_params)
-    # if params[:commit] == 'Save and Add Another Member' && @member.save
-    #   flash[:success] = "#{@member.name} added!"
-    #
-    #   redirect_to new_member_path
     if params[:commit] == 'Create Account' && @member.save
       session[:member_id] = @member.id
       flash[:success] = "Welcome, #{@member.name}!"
@@ -49,15 +45,16 @@ class MembersController < ApplicationController
      redirect_to members_path
    end
 
-  private
-    def member_params
-      params.require(:member)
-      .permit(
-        :name,
-        :username,
-        :password,
-        :role,
-        :email
-      )
-    end
+private
+  def member_params
+    params.require(:member)
+    .permit(
+      :name,
+      :username,
+      :password,
+      :role,
+      :email,
+      :ingredient_id
+    )
+  end
 end

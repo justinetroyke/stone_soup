@@ -6,7 +6,7 @@ class Group < ApplicationRecord
   belongs_to :recipe
 
   def self.assign_ingredients!(members:, ingredients:)
-    binding.pry
+    # binding.pry
     members.shuffle
     ingredients = ingredients.shuffle.to_a
     members.each do |member|
