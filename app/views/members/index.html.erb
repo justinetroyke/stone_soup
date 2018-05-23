@@ -3,7 +3,7 @@
 <ul>
   <% @members.each do |member| %>
   <li class=member <%= member.name %>
-  <li><%= member.name %>
+  <li><%= link_to member.name, member_path(member) %>
     <%= link_to 'Edit', edit_member_path(member) %>
     <%= link_to 'Delete', member_path(member), method: 'Delete' %></li>
   </li>
