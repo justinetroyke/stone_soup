@@ -3,7 +3,7 @@ class Member < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   validates :role, presence: true
   validates :username, uniqueness: true, presence: true
-  validates_presence_of :password, require: true
+  validates_presence_of :password, require: true, on: :create
 
   has_secure_password
 
