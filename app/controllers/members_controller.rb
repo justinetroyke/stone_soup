@@ -23,7 +23,7 @@ class MembersController < ApplicationController
 
       redirect_to member_path(@member)
     else
-      flash[:error] = 'Check all fields have been completed and try again!'
+      flash[:error] = 'Registration fail, Please try again!'
 
       redirect_to new_member_path
     end

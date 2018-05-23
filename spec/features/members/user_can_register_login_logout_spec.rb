@@ -59,19 +59,23 @@ describe 'Visitor' do
       expect(current_path).to eq(root_path)
     end
   end
-  #   it 'should not allow duplicate usernames' do
-  #     username = 'octocat'
-  #     User.create(username: username, password: 'secret')
-  #
-  #     visit new_user_path
-  #
-  #     fill_in :user_username, with: username
-  #     fill_in :user_password, with: 'supersecret12345'
-  #
-  #     click_on 'Create User'
-  #
-  #     expect(current_path).to eq(users_path)
-  #     expect(page).to have_content('Registration failed')
-  #   end
-  # end
+
+  it 'should not allow duplicate usernames' do
+    username = 'octocat'
+    name = 'Justine Troyke'
+    pass = 'password'
+    role = 'Member'
+    email = 'abc@yo.edu'
+    Member.create(username: username, password: pass, name: name, role: role, email: email)
+
+    visit new_member_path
+
+    fill_in :member_username, with: username
+    fill_in :member_password, with: 'supersecret12345'
+
+    click_on 'Create Account'
+
+    expect(current_path).to eq(new_member_path)
+    expect(page).to have_content('Registration fail, Please try again!')
+  end
 end
