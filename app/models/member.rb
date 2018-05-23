@@ -3,4 +3,5 @@ class Member < ApplicationRecord
   validates :role, presence: true
   validates :email, presence: true
   has_many :group_members
+  belongs_to :ingredient, optional: true
 end

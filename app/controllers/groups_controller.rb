@@ -5,6 +5,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+
+    # @assignments = @group.assign_ingredients
   end
 
   def new
