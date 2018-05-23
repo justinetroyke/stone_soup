@@ -3,9 +3,10 @@ require 'rails_helper'
 describe 'manager can delete members' do
   scenario 'deletes through button on index' do
     name = 'Justine Troyke'
+    pass = 'password '
     role = 'Member'
     email = 'bringit@poop.com'
-    member = Member.create!(name: name, role: role, email: email)
+    member = Member.create!(username: name, password: pass, name: name, role: role, email: email)
 
     visit members_path
     click_link 'Delete'
