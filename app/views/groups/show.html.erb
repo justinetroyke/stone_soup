@@ -20,4 +20,8 @@ Group Members:
   <% end %>
 </ul>
 <br>
-<li><%= link_to 'Assign Ingredients' %><% %></li>
+
+<%= form_tag assign_path %>
+  <%= hidden_field_tag 'group_id', @group.id %>
+  <%= submit_tag 'Assign Ingredients' %>
+<% end %>

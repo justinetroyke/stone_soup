@@ -18,7 +18,8 @@ class MembersController < ApplicationController
     #
     #   redirect_to new_member_path
     if params[:commit] == 'Create Account' && @member.save
-      flash[:success] = "Welcome, #{@member.name}"
+      session[:member_id] = @member.id
+      flash[:success] = "Welcome, #{@member.name}!"
 
       redirect_to member_path(@member)
     else
