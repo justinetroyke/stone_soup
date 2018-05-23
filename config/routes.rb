@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root "welcome#index"
 
-  resources :users, only: [:new]
   resources :ingredients
   resources :recipes do
     resources :recipe_ingredients

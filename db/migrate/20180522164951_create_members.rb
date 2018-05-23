@@ -1,6 +1,8 @@
 class CreateMembers < ActiveRecord::Migration[5.2]
   def change
     create_table :members do |t|
+      t.string :username
+      t.string :password_digest
       t.string :name
       t.integer :role, default: 0
       t.string :email

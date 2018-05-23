@@ -1,4 +1,10 @@
 <%= form_for @member do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
   <%= f.label :name %>
   <%= f.text_field :name %>
 
@@ -8,6 +14,5 @@
   <%= f.label :email %>
   <%= f.email_field :email %>
 
-  <%= f.submit 'Save and Add Another Member' %>
-  <%= f.submit 'Create Member' %>
+  <%= f.submit 'Create Account' %>
 <% end %>

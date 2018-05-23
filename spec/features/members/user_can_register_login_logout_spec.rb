@@ -3,7 +3,8 @@ require 'rails_helper'
 describe 'Visitor' do
   context 'fills out a registration form and selects member role' do
     it 'should make a member account successfully' do
-      username = 'Justine Troyke'
+      name = 'Justine Troyke'
+      username = 'j2thejt'
       email = 'jjtroyke@gmail.com'
       password = 'guesswhat2'
       role = 0
@@ -12,17 +13,18 @@ describe 'Visitor' do
 
       click_on 'Become a Stone Soup Member'
 
-      expect(current_path).to eq(new_user_path)
+      expect(current_path).to eq(new_member_path)
 
       fill_in :member_username, with: username
+      fill_in :member_name, with: name
       fill_in :member_password, with: password
       fill_in :member_email, with: email
       fill_in :member_role, with: role
 
       click_on 'Create Account'
 
-      expect(current_path).to eq(member_path(Member.last))
-      expect(page).to have_content("Welcome, #{username}")
+      expect(current_path).to eq(member_path(Member.last.id))
+      expect(page).to have_content("Welcome, #{Member.last.name}")
       expect(page).to have_content(email)
       expect(page).to have_content(role)
       expect(page).to have_content('Your group this week:')
@@ -31,7 +33,7 @@ describe 'Visitor' do
   end
 
   # context 'logs in' do
-  #   it 'should log in the user' do
+  #   it 'should log in the member' do
   #     username = 'octocat'
   #     password = 'password'
   #     user = User.create!(username: username, password: password)
@@ -55,9 +57,6 @@ describe 'Visitor' do
   #     expect(current_path).to eq(root_path)
   #   end
   # end
-
-
-  #
   #   it 'should not allow duplicate usernames' do
   #     username = 'octocat'
   #     User.create(username: username, password: 'secret')
