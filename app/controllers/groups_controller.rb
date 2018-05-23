@@ -53,7 +53,7 @@ class GroupsController < ApplicationController
 
   private
     def group_params
-      params.require(:group).permit(:title, :start)
+      params.require(:group).permit(:title, :start, :recipe_id)
     end
 
     def group_member_params

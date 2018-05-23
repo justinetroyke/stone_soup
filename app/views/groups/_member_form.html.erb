@@ -1,8 +1,6 @@
 <%= form_for @group do |f| %>
 
   <%= f.fields_for :group_members, @group.group_members.build do |group_member| %>
-    <%#= group_member.label :recipe %>
-    <%#= group_member.collection_select :recipe, Recipe.all, :id, :name %> &nbsp &nbsp
     <%= group_member.label :member_id %>
     <%= group_member.collection_select :member_id, Member.all, :id, :name %>
   <% end %>

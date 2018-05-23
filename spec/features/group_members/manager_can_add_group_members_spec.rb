@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'manager can add members to group through' do
   scenario 'manager adds members to group and directs to index' do
+    title = 'Chicken Broccoli'
+    directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
+    recipe = Recipe.create!(title: title, directions: directions)
     name = 'Justine Troyke'
     name2 = 'Deadpool'
     name3 = 'Pocahantas'
@@ -20,7 +23,7 @@ describe 'manager can add members to group through' do
     member4 = Member.create!(name: name4, role: role4, email: email4)
     title = 'Rice as Nice'
     start = '2018-05-28'
-    group = Group.create!(title: title, start: start)
+    group = Group.create!(title: title, start: start, recipe_id: recipe.id)
 
     visit group_path(group)
 

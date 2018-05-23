@@ -2,9 +2,12 @@ require 'rails_helper'
 
 describe 'manager can delete groups' do
   scenario 'deletes through button on index' do
+    title = 'Chicken Broccoli'
+    directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
+    recipe = Recipe.create!(title: title, directions: directions)
     title = 'Soupers'
     start = '2018-05-28'
-    group = Group.create!(title: title, start: start)
+    group = Group.create!(title: title, start: start, recipe_id: recipe.id)
 
     visit groups_path
 
@@ -16,9 +19,12 @@ describe 'manager can delete groups' do
   end
 
   scenario 'deletes through button on show' do
+    title = 'Chicken Broccoli'
+    directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
+    recipe = Recipe.create!(title: title, directions: directions)
     title = 'Soupers'
     start = '2018-05-28'
-    group = Group.create!(title: title, start: start)
+    group = Group.create!(title: title, start: start, recipe_id: recipe.id)
 
     visit group_path(group)
 

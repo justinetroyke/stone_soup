@@ -6,4 +6,8 @@ describe Member, type: :model do
     it { should validate_presence_of(:role) }
     it { should validate_presence_of(:email) }
   end
+
+  describe 'relationships' do
+    it { should have_many(:group_members) }
+  end
 end

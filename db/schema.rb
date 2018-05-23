@@ -27,6 +27,10 @@ ActiveRecord::Schema.define(version: 2018_05_22_214619) do
   create_table "groups", force: :cascade do |t|
     t.string "title"
     t.date "start"
+    t.bigint "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_groups_on_recipe_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -62,6 +66,7 @@ ActiveRecord::Schema.define(version: 2018_05_22_214619) do
 
   add_foreign_key "group_members", "groups"
   add_foreign_key "group_members", "members"
+  add_foreign_key "groups", "recipes"
   add_foreign_key "recipe_ingredients", "ingredients"
   add_foreign_key "recipe_ingredients", "recipes"
 end

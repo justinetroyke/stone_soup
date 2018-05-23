@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'manager can add groups through /groups/new' do
+describe 'manager can create groups through /groups/new' do
   scenario 'sees new groups form' do
     title = 'Chicken Broccoli'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
@@ -11,6 +11,7 @@ describe 'manager can add groups through /groups/new' do
 
     expect(page).to have_button(button)
     expect(page).to have_field('group[title]')
+    expect(page).to have_field('Recipe')
   end
 
   scenario 'manager adds new group and directs to index' do
@@ -28,30 +29,9 @@ describe 'manager can add groups through /groups/new' do
     select(recipe.title, from: 'Recipe')
     click_button 'Create Group'
 
-
     expect(current_path).to eq groups_path
     expect(page).to have_link title
     expect(page).to have_content start
     expect(page).to have_content heading
-  end
-
-  scenario 'manager clicks on group link and directs to show' do
-    title = 'Chicken Broccoli'
-    directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
-    recipe = Recipe.create!(title: title, directions: directions)
-    title = 'Soupers'
-    start = '2018-05-28'
-    title2 = 'Hungry Men'
-    start2 = '2018-05-28'
-    Group.create!(title: title, start: start, recipe_id: recipe.id)
-    group2 = Group.create!(title: title2, start: start2, recipe_id: recipe.id)
-
-    visit groups_path
-
-    click_link title2
-
-    expect(current_path).to eq group_path(group2)
-    expect(page).to have_content start2
-    expect(page).to have_content "#{title2} Group"
   end
 end

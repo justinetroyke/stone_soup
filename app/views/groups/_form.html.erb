@@ -2,6 +2,9 @@
   <%= f.label :title %>
   <%= f.text_field :title %>
 
+  <%= f.label :recipe_id %>
+  <%= f.collection_select :recipe_id, Recipe.all, :id, :title %>
+
   <%= f.label :start %>
   <%= f.date_field :start %>
 
