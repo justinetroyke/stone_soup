@@ -1,0 +1,14 @@
+<nav>
+  <a href="<%= root_path %>">Home</a>
+  <a href="<%= groups_path %>">Groups</a>
+  <a href="<%= recipes_path %>">Recipes</a>
+  <a href="<%= ingredients_path %>">Ingredients</a>
+
+  <% if current_member %>
+    <%= link_to "Log out", logout_path %>
+  <% else %>
+    <%= link_to "Register", new_member_path %>
+    <%= link_to "Log in", login_path %>
+  <% end %>
+</nav>
+<hr>

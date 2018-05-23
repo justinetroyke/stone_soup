@@ -24,7 +24,7 @@ describe 'Visitor' do
       click_on 'Create Account'
 
       expect(current_path).to eq(member_path(Member.last.id))
-      expect(page).to have_content("Welcome, #{Member.last.name}")
+      expect(page).to have_content("Welcome, #{Member.last.name}!")
       expect(page).to have_content(email)
       expect(page).to have_content(role)
       expect(page).to have_content('Your group this week:')
@@ -32,44 +32,50 @@ describe 'Visitor' do
     end
   end
 
-  # context 'logs in' do
-  #   it 'should log in the member' do
-  #     username = 'octocat'
-  #     password = 'password'
-  #     user = User.create!(username: username, password: password)
-  #
-  #     visit '/'
-  #
-  #     click_on "Log in"
-  #
-  #     expect(current_path).to eq(login_path)
-  #
-  #     fill_in :username, with: username
-  #     fill_in :password, with: password
-  #     within('#login_form') do
-  #       click_on "Log in"
-  #     end
-  #
-  #     expect(current_path).to eq(user_path(user))
-  #     expect(page).to have_link("Log out")
-  #
-  #     click_on "Log out"
-  #     expect(current_path).to eq(root_path)
-  #   end
-  # end
-  #   it 'should not allow duplicate usernames' do
-  #     username = 'octocat'
-  #     User.create(username: username, password: 'secret')
-  #
-  #     visit new_user_path
-  #
-  #     fill_in :user_username, with: username
-  #     fill_in :user_password, with: 'supersecret12345'
-  #
-  #     click_on 'Create User'
-  #
-  #     expect(current_path).to eq(users_path)
-  #     expect(page).to have_content('Registration failed')
-  #   end
-  # end
+  context 'logs in' do
+    it 'should log in the member' do
+      name = 'Justine Troyke'
+      pass = 'password'
+      role = 'Member'
+      email = 'abc@yo.edu'
+      member = Member.create!(name: name, username: name, password: pass, role: role, email: email)
+
+      visit '/'
+
+      click_on "Log in"
+
+      expect(current_path).to eq(login_path)
+
+      fill_in :username, with: name
+      fill_in :password, with: pass
+      within('#login_form') do
+        click_on "Log in"
+      end
+
+      expect(current_path).to eq(member_path(member))
+      expect(page).to have_link("Log out")
+
+      click_on "Log out"
+      expect(current_path).to eq(root_path)
+    end
+  end
+
+  it 'should not allow duplicate usernames' do
+    username = 'octocat'
+    name = 'Justine Troyke'
+    pass = 'password'
+    role = 'Member'
+    email = 'abc@yo.edu'
+    Member.create(username: username, password: pass, name: name, role: role, email: email)
+
+    visit new_member_path
+
+    fill_in :member_username, with: username
+    fill_in :member_password, with: 'supersecret12345'
+
+    click_on 'Create Account'
+
+    expect(current_path).to eq(new_member_path)
+    expect(page).to have_content('Registration fail, Please try again!')
+  end
 end

@@ -5,8 +5,14 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @assignments = Group.get_assignments
+  end
 
-    # @assignments = @group.assign_ingredients
+  def assign
+    @group = Group.find(params[:group_id])
+    recipe = @group.recipe
+    @group.assign_ingredients(group.members, recipe.ingredients)
+
   end
 
   def new

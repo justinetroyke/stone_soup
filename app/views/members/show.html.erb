@@ -1,3 +1,7 @@
+<% if current_member %>
+  <%= link_to "Log out", logout_path %>
+<% end %>
+<br>
 <%= @member.name %>
 <br>
 <%= @member.email %>
