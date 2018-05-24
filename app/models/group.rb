@@ -2,7 +2,7 @@ class Group < ApplicationRecord
   validates :title, presence: true, uniqueness: true
   validates :start, presence: true
   has_many :group_members
-  has_many :members, through: :group_members
+  has_many :members, through: :group_members, dependent: :destroy
   belongs_to :recipe
 
   def assign_ingredients
