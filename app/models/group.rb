@@ -14,7 +14,10 @@ class Group < ApplicationRecord
     end
   end
 
-  def get_assignments
-    {username: [ingredient_name, quantity]}
+  def get_assignments(members:)
+    members.each do |member|
+      binding.pry
+    end
+    # { username: [ingredient_name, quantity] }
   end
 end
