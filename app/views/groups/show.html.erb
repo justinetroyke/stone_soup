@@ -19,9 +19,11 @@ Group Members:
 <ul class=group_members>
     <% @group.group_members.each do |group_member| %>
     <% unless group_member.member_id.nil? %>
-      <li><%= group_member.member.name %> | <%= @assignments[group_member.member.name] if @assignments %></li>
+      <li><%= group_member.member.name %> | <%= @assignments[group_member.member.name] if @assignments %> </li>
     <% end %>
   <% end %>
 </ul>
 
-<%= button_to 'Assign Ingredients', assign_group_path(@group) %>
+<% if current_leader? %>
+  <%= button_to 'Assign Ingredients', assign_group_path(@group) %>
+<% end %>
