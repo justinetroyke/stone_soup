@@ -5,18 +5,17 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @assignments = @group.get_assignments
   end
 
   def assign
-    @group = Group.find(params[:group_id])
-    recipe = @group.recipe
-    @group.assign_ingredients
+    @group = Group.find(params[:id])
+    if @group.get_assignments.nil?
+      recipe = @group.recipe
+      @group.assign_ingredients
+    end
+    redirect_to group_path(@group)
   end
-
-  # def assignments
-  #   @group = Group.find(params[:group_id])
-  #   @group.get_assignments
-  # end
 
   def new
     @group = Group.new

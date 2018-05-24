@@ -1,12 +1,18 @@
 require 'rails_helper'
 
-describe 'manager can edit ingredients' do
+describe 'leader can edit ingredients' do
+  before { login_as_leader }
+
   scenario 'edits through button on index' do
     title = 'Chicken Broccoli'
     title_2 = 'Green Cluck'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
     directions_2 = 'do the thing'
     Recipe.create!(title: title, directions: directions)
+    name = 'Justine Troyke'
+    password = 'password '
+    role = 1
+    email = 'bringit@yo.com'
 
     visit recipes_path
 

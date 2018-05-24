@@ -1,6 +1,9 @@
 require 'rails_helper'
 
-describe 'manager can edit groups' do
+describe 'leader can edit groups' do
+  before do
+    login_as_leader
+  end
   scenario 'edits through button on index' do
     title = 'Chicken Broccoli'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'

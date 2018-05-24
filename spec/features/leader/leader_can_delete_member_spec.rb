@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe 'leader can delete members' do
+  before do
+    login_as_leader
+  end
   scenario 'deletes through button on index' do
     name = 'Justine Troyke'
     password = 'password'
@@ -14,15 +17,6 @@ describe 'leader can delete members' do
       role: 'member',
       email: email
     )
-    leader = Member.create!(
-      username: name2,
-      password: password,
-      name: name2,
-      role: 'leader',
-      email: email2
-    )
-
-    allow_any_instance_of(ApplicationController).to receive(:current_member).and_return(leader)
 
     visit members_path
 

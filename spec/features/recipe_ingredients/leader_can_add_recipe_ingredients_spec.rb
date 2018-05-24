@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-describe 'manager can add ingredients to recipe through' do
-  scenario 'manager adds ingredients to recipe and directs to index' do
+describe 'leader can add ingredients to recipe through' do
+  before { login_as_leader }
+  scenario 'leader adds ingredients to recipe and directs to index' do
     item = 'Onion'
     item2 = 'chicken'
     item3 = 'rice'

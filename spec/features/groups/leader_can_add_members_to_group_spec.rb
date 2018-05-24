@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-describe 'manager can add groups through /groups/new' do
+describe 'leader can add groups through /groups/new' do
+  before { login_as_leader }
+
   scenario 'sees new groups form' do
     title = 'Chicken Broccoli'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
@@ -13,7 +15,7 @@ describe 'manager can add groups through /groups/new' do
     expect(page).to have_field('group[title]')
   end
 
-  scenario 'manager adds new group and directs to index' do
+  scenario 'leader adds new group and directs to index' do
     title = 'Chicken Broccoli'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
     recipe = Recipe.create!(title: title, directions: directions)
@@ -35,7 +37,7 @@ describe 'manager can add groups through /groups/new' do
     expect(page).to have_content heading
   end
 
-  scenario 'manager clicks on group link and directs to show' do
+  scenario 'leader clicks on group link and directs to show' do
     title = 'Chicken Broccoli'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
     recipe = Recipe.create!(title: title, directions: directions)

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-describe 'manager can delete recipes' do
+describe 'leader can delete recipes' do
+  before { login_as_leader }
   scenario 'deletes through button on index' do
     title = 'Taco Salad'
     directions = 'grill chicken, put stuff in bowl, mix'
