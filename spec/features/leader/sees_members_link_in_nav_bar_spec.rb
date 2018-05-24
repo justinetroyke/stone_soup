@@ -17,7 +17,7 @@ describe 'Member visits members index page' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_member).and_return(leader)
 
-      visit leader_member_path(leader)
+      visit member_path(leader)
 
       expect(page).to have_link('Members')
     end

@@ -36,7 +36,7 @@ describe Group, type: :model do
       GroupMember.create!(member_id: member.id, group_id: group.id)
       GroupMember.create!(member_id: member2.id, group_id: group.id)
 
-      Group.assign_ingredients!(members: group.members, ingredients: recipe.ingredients)
+      group.assign_ingredients
 
       [member, member2].each do |m|
         m.reload
@@ -67,13 +67,22 @@ describe Group, type: :model do
       group = Group.create!(title: title, start: start, recipe_id: recipe.id)
       GroupMember.create!(member_id: member.id, group_id: group.id)
       GroupMember.create!(member_id: member2.id, group_id: group.id)
-      # Group.assign_ingredients!(members: group.members, ingredients: recipe.ingredients)
 
-      # Group.get_assignments!(members: group.members)
+      group.assign_ingredients
 
-      # [member, member2].each do |m|
-      #   expect(m.ingredient_id).to eq(ingredient.id).or(eq(ingredient2.id))
-      # end
+      assignments = group.get_assignments
+
+      [member.name, member2.name].each do |username|
+        expect(assignments.keys.include? username).to eq(true)
+      end
+
+      [ingredient.item, ingredient2.item].each do |ing_name|
+        subarray = assignments.values.map do |ingredients|
+          ingredients[0]
+        end
+
+        expect(subarray.include? ing_name).to eq(true)
+      end
     end
   end
 end

@@ -1,11 +1,15 @@
-<h2>Stone Soup Members</h2>
+<center>
+  <h1>Stone Soup Members</h1>
+</center>
 
 <ul>
   <% @members.each do |member| %>
-  <li class=member <%= member.name %>
-  <li><%= link_to member.name, member_path(member) %>
-    <%= link_to 'Edit', edit_member_path(member) %>
-    <%= link_to 'Delete', member_path(member), method: 'Delete' %></li>
+  <li class=member id='member_<%= member.id %>' ><%= member.name %>
+      <%= link_to member.name, member_path(member) %>
+      <%= link_to 'Edit', edit_member_path(member) %>
+    <% if current_member.id != member.id %>
+      <%= link_to 'Delete', leader_member_path(member), method: 'Delete' %>
+    <% end %>
   </li>
   <% end %>
 </ul>
