@@ -13,15 +13,10 @@ Start: <%= @group.start %>
 <br>
 Group Members:
 <ul class=group_members>
-  <% @group.group_members.each do |group_member| %>
-    <% if group_member.member %>
-      <li><%= group_member.member.name %> - <%#= group_member.member.ingredient.item %></li>
+    <% @group.group_members.each do |group_member| %>
+    <% unless group_member.member_id.nil? %>
+      <li><%= group_member.member.name %></li>
     <% end %>
   <% end %>
 </ul>
 <br>
-
-<%= form_tag assign_path %>
-  <%= hidden_field_tag 'group_id', @group.id %>
-  <%= submit_tag 'Assign Ingredients' %>
-<% end %>

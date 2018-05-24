@@ -5,19 +5,23 @@ class Group < ApplicationRecord
   has_many :members, through: :group_members
   belongs_to :recipe
 
-  def self.assign_ingredients!(members:, ingredients:)
+  def assign_ingredients
     members.shuffle
-    ingredients = ingredients.shuffle.to_a
+    recipe.ingredients.shuffle
+    ing = recipe.ingredients.to_a
     members.each do |member|
-      member.ingredient_id = ingredients.pop.id
+      member.ingredient_id = ing.pop.id
       member.save!
     end
   end
 
-  def get_assignments(members:)
+  def get_assignments
+    results = {}
     members.each do |member|
-      binding.pry
+      ing_id = member.ingredient_id
+      amount = RecipeIngredient.find_by(recipe_id: recipe.id, ingredient_id: member.ingredient_id).ingredient_amount
+      results[member.name] = [member.ingredient.item, amount]
     end
-    # { username: [ingredient_name, quantity] }
+    results
   end
 end

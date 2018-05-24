@@ -1,5 +1,5 @@
 class Leader::BaseController < ApplicationController
-  before_action :require_leader, only: [:index]
+  before_action :require_leader, only: [:index, :show]
 
 private
 

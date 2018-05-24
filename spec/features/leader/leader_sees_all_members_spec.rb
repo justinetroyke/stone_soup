@@ -17,7 +17,7 @@ describe 'Member visits members index page' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_member).and_return(organizer)
 
-      visit leader_members_path
+      visit members_path
 
       expect(page).to have_content('Stone Soup Members')
     end
@@ -39,7 +39,7 @@ describe 'Member visits members index page' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_member).and_return(member)
 
-      visit leader_members_path
+      visit members_path
 
       expect(page).to_not have_content('Stone Soup Members')
       expect(page).to have_content("The page you were looking for doesn't exist")
