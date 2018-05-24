@@ -4,7 +4,7 @@
 
 <ul>
   <% @members.each do |member| %>
-  <li class=member id='member_<%= member.id %>' ><%= member.name %>
+  <li class=member id='member_<%= member.id %>' >
       <%= link_to member.name, member_path(member) %>
       <%= link_to 'Edit', edit_member_path(member) %>
     <% if current_member.id != member.id %>

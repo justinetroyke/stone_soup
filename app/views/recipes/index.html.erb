@@ -1,5 +1,5 @@
 <h2>Recipes</h2>
-
+<%= link_to 'Add Recipes', new_recipe_path %>
 <ul>
   <% @recipes.each do |recipe| %>
   <li class=recipe <%= recipe.title %>
