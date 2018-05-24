@@ -7,8 +7,11 @@ describe 'manager can create groups through /groups/new' do
     Recipe.create!(title: title, directions: directions)
     button = 'Create Group'
 
-    visit new_group_path
+    visit groups_path
 
+    click_on 'Create Group'
+
+    expect(current_path).to eq(new_group_path)
     expect(page).to have_button(button)
     expect(page).to have_field('group[title]')
     expect(page).to have_field('Recipe')

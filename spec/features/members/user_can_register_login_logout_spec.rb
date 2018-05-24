@@ -11,7 +11,7 @@ describe 'Visitor' do
 
       visit '/'
 
-      click_link 'Register'
+      click_link 'Register!'
 
       expect(current_path).to eq(new_member_path)
 

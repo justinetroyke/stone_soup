@@ -1,0 +1,24 @@
+<!-- <nav>
+  <div class="row flex-spaces tabs">
+    <a href="<%= members_path %>" for="tab4">
+    <input id="tab4" type="radio" name="tabs">
+    <button for="tab4">Members</button>
+    </a>
+  </div>
+</nav> -->
+
+<% if current_member %>
+  <%= link_to "Log out", logout_path %>
+<% end %>
+<br>
+<%= @leader.name %>
+<br>
+<%= @leader.email %>
+<br>
+<%= @leader.role %>
+
+<br>
+<h2>Your group this week:<h2>
+
+<br>
+<h2>Your ingredient this week:<h2>
