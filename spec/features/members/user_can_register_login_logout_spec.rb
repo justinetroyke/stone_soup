@@ -7,11 +7,11 @@ describe 'Visitor' do
       username = 'j2thejt'
       email = 'jjtroyke@gmail.com'
       password = 'guesswhat2'
-      role = 0
+      role = 'member'
 
       visit '/'
 
-      click_on 'Become a Stone Soup Member'
+      click_on 'Register'
 
       expect(current_path).to eq(new_member_path)
 
@@ -36,15 +36,16 @@ describe 'Visitor' do
     it 'should log in the member' do
       name = 'Justine Troyke'
       pass = 'password'
-      role = 'Member'
+      role = 'member'
       email = 'abc@yo.edu'
       member = Member.create!(name: name, username: name, password: pass, role: role, email: email)
 
       visit '/'
 
-      click_on "Log in"
+      click_link "Login"
 
       expect(current_path).to eq(login_path)
+
 
       fill_in :username, with: name
       fill_in :password, with: pass
@@ -53,7 +54,7 @@ describe 'Visitor' do
       end
 
       expect(current_path).to eq(member_path(member))
-      expect(page).to have_link("Log out")
+      expect(page).to have_content("Log out")
 
       click_on "Log out"
       expect(current_path).to eq(root_path)
@@ -64,7 +65,7 @@ describe 'Visitor' do
     username = 'octocat'
     name = 'Justine Troyke'
     pass = 'password'
-    role = 'Member'
+    role = 0
     email = 'abc@yo.edu'
     Member.create(username: username, password: pass, name: name, role: role, email: email)
 

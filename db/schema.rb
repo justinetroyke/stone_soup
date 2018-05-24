@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2018_05_22_214619) do
     t.string "password_digest"
     t.string "name"
     t.integer "role", default: 0
+    t.integer "integer", default: 0
     t.string "email"
     t.bigint "ingredient_id"
     t.datetime "created_at", null: false

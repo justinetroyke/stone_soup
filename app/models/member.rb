@@ -3,9 +3,14 @@ class Member < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   validates :role, presence: true
   validates :username, uniqueness: true, presence: true
-  validates_presence_of :password, require: true
-  
+  validates_presence_of :password, require: true, on: :create
+
   has_secure_password
+
+  enum role: {
+    member: 0,
+    leader: 1,
+  }
 
   has_many :group_members
   belongs_to :ingredient, optional: true

@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
       @current_member ||= Member.find(session[:member_id])
     end
   end
+
+  def current_leader?
+    current_member && current_member.leader?
+  end
 end

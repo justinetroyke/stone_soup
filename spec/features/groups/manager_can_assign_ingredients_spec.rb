@@ -10,10 +10,10 @@ describe 'manager can assign ingredients once group has members' do
     name3 = 'Pocahantas'
     name4 = 'John Smith'
     pass = 'password'
-    role = 'Member'
-    role2 = 'Member'
-    role3 = 'Member'
-    role4 = 'Member'
+    role = 0
+    role2 = 0
+    role3 = 0
+    role4 = 0
     email = 'abc@yo.edu'
     email2 = '123@yo.edu'
     email3 = 'haha@yo.edu'

@@ -25,8 +25,8 @@ describe Group, type: :model do
       name = 'Justine Troyke'
       name2 = 'Deadpool'
       pass= 'password'
-      role = 'Member'
-      role2 = 'Member'
+      role = 0
+      role2 = 0
       email = 'abc@yo.edu'
       email2 = '123@yo.edu'
       member = Member.create!(name: name, username: name, password: pass, role: role, email: email)
@@ -37,7 +37,9 @@ describe Group, type: :model do
       GroupMember.create!(member_id: member2.id, group_id: group.id)
       # binding.pry
       Group.assign_ingredients!(members: group.members, ingredients: recipe.ingredients)
+
       [member, member2].each do |m|
+        m.reload
         expect(m.ingredient_id).to eq(ingredient.id).or(eq(ingredient2.id))
       end
     end

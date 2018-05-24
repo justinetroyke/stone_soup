@@ -4,7 +4,7 @@ class CreateMembers < ActiveRecord::Migration[5.2]
       t.string :username
       t.string :password_digest
       t.string :name
-      t.integer :role, default: 0
+      t.integer :role, :integer, default: 0
       t.string :email
       t.references :ingredient, foreign_key: true
 
