@@ -27,7 +27,6 @@ describe 'Visitor' do
       expect(page).to have_content("Welcome, #{Member.last.name}!")
       expect(page).to have_content(email)
       expect(page).to have_content(role)
-      expect(page).to have_content('Your group this week:')
       expect(page).to have_content('Your ingredient this week:')
     end
   end

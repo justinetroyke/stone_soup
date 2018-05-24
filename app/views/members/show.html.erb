@@ -9,9 +9,5 @@
 <%= @member.role %>
 
 <br>
-<h2>Your group this week:<h2>
-
-
-<br>
-<h2>Your ingredient this week:<h2>
-<%= @assignments[group_member.member.name] if @assignments %>
+  <h2>Your ingredient this week:<h2>
+  <%= @member.ingredient.item unless @member.ingredient_id.nil? %>
