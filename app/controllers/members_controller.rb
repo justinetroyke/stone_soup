@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   def index
-    render 404 unless current_leader?
+    render :file => "#{Rails.root}/public/404" unless current_leader?
     @members = Member.all
   end
 
