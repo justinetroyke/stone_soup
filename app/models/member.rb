@@ -7,7 +7,10 @@ class Member < ApplicationRecord
 
   has_secure_password
 
-  enum role: [:member, :leader]
+  enum role: {
+    member: 0,
+    leader: 1,
+  }
 
   has_many :group_members
   belongs_to :ingredient, optional: true

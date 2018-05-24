@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+ div.image {
+   content:url(http://www.ccctiburon.org/stone-soup.html);
+}​
+
  @charset "UTF-8";
  @import url(https://fonts.googleapis.com/css?family=Neucha|Patrick+Hand+SC);
  .text-primary {
@@ -150,6 +155,7 @@
  img {
    border-style: none
  }
+
  svg:not(:root) {
    overflow: hidden
  }

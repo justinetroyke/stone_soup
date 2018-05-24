@@ -4,7 +4,7 @@ describe 'manager can delete members' do
   scenario 'deletes through button on index' do
     name = 'Justine Troyke'
     pass = 'password '
-    role = 'Member'
+    role = 'member'
     email = 'bringit@poop.com'
     member = Member.create!(username: name, password: pass, name: name, role: role, email: email)
 
