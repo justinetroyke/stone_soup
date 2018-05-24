@@ -1,13 +1,16 @@
 <h2>Available Ingredients</h2>
-
-<%= link_to 'Add Ingredients', new_ingredient_path %>
+<% if current_leader? %>
+  <%= link_to 'Add Ingredients', new_ingredient_path %>
+<% end %>
 
 <ul>
   <% @ingredients.each do |ingredient| %>
   <li class=ingredient <%= ingredient.item %>
   <li><%= ingredient.item %>
-    <%= link_to 'Edit', edit_ingredient_path(ingredient) %>
-    <%= link_to 'Delete', ingredient_path(ingredient), method: 'Delete' %></li>
+    <% if current_leader? %>
+      <%= link_to 'Edit', edit_ingredient_path(ingredient) %>
+      <%= link_to 'Delete', ingredient_path(ingredient), method: 'Delete' %></li>
+    <% end %>
   </li>
   <% end %>
 </ul>

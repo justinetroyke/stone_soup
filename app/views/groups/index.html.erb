@@ -1,12 +1,17 @@
 <h2>Groups</h2>
+<% if current_leader? %>
+  <%= link_to 'Add Group', new_group_path %>
+<% end %>
 
 <ul>
   <% @groups.each do |group| %>
   <li class=group <%= group.title %>
   <li>Meals start on: <%= group.start %> for
     <%= link_to group.title, group_path(group) %>
-    <%= link_to 'Edit', edit_group_path(group) %>
-    <%= link_to 'Delete', group_path(group), method: 'Delete' %></li>
+    <% if current_leader? %>
+      <%= link_to 'Edit', edit_group_path(group) %>
+      <%= link_to 'Delete', group_path(group), method: 'Delete' %></li>
+    <% end %>
   </li>
   <% end %>
 </ul>

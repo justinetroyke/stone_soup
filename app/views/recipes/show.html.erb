@@ -1,11 +1,14 @@
 <h2><%= @recipe.title %> Recipe</h2>
 
-<%= link_to 'Add Recipes', new_recipe_path %>
+<% if current_leader? %>
+  <%= link_to 'Add Recipes', new_recipe_path %>
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %>
-<%= link_to 'Delete', recipe_path(@recipe), method: 'Delete' %>
-<br>
-<%= render partial: "ingredient_form" %>
+  <%= link_to 'Edit', edit_recipe_path(@recipe) %>
+  <%= link_to 'Delete', recipe_path(@recipe), method: 'Delete' %>
+  <br>
+  <%= render partial: "ingredient_form" %>
+<% end %>
+
 <ul class=recipe_ingredients>
   <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
     <% if recipe_ingredient.ingredient %>

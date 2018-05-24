@@ -1,11 +1,16 @@
 <h2>Recipes</h2>
-<%= link_to 'Add Recipes', new_recipe_path %>
+<% if current_leader? %>
+  <%= link_to 'Add Recipes', new_recipe_path %>
+<% end %>
+
 <ul>
   <% @recipes.each do |recipe| %>
   <li class=recipe <%= recipe.title %>
   <li><%= link_to recipe.title, recipe_path(recipe) %>
-    <%= link_to 'Edit', edit_recipe_path(recipe) %>
-    <%= link_to 'Delete', recipe_path(recipe), method: 'Delete' %></li>
+    <% if current_leader? %>
+      <%= link_to 'Edit', edit_recipe_path(recipe) %>
+      <%= link_to 'Delete', recipe_path(recipe), method: 'Delete' %></li>
+    <% end %>
   </li>
   <% end %>
 </ul>
