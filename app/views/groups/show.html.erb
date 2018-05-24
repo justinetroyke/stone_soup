@@ -1,10 +1,14 @@
 <h2><%= @group.title %> Group</h2>
-<%= link_to 'Edit', edit_group_path(@group) %>
-<%= link_to 'Delete', group_path(@group), method: 'Delete' %>
+<% if current_leader? %>
+  <%= link_to 'Edit', edit_group_path(@group) %>
+  <%= link_to 'Delete', group_path(@group), method: 'Delete' %>
+<% end %>
 <br>
-<br>
-<%= render partial: "member_form" %>
-<br>
+<% if current_leader? %>
+  <br>
+  <%= render partial: "member_form" %>
+  <br>
+<% end %> 
 <br>
 Recipe Name: <%= @group.recipe.title %>
 <br>
