@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-describe 'manager can add recipes through /recipes/new' do
+describe 'leader can add recipes through /recipes/new' do
+  before { login_as_leader }
   scenario 'sees new recipes form' do
     button = 'Create Recipe'
     visit new_recipe_path
@@ -9,7 +10,7 @@ describe 'manager can add recipes through /recipes/new' do
     expect(page).to have_field('recipe[title]')
   end
 
-  scenario 'manager adds new recipe and directs to index' do
+  scenario 'leader adds new recipe and directs to index' do
     title = 'Chicken Broccoli'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
     heading = 'Recipes'
@@ -25,7 +26,7 @@ describe 'manager can add recipes through /recipes/new' do
     expect(page).to have_content heading
   end
 
-  scenario 'manager clicks on recipe link and directs to show' do
+  scenario 'leader clicks on recipe link and directs to show' do
     title = 'Chicken Broccoli'
     title2 = 'Taco Salad'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'

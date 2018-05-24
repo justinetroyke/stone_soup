@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
-  post '/assign', to: 'groups#assign'
 
   resources :ingredients
   resources :recipes do
@@ -11,6 +10,9 @@ Rails.application.routes.draw do
   end
   resources :members, except: [:destroy]
   resources :groups do
+    member do
+      post :assign
+    end
     resources :group_members
   end
 

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-describe 'manager can delete members' do
+describe 'leader can delete members' do
+  before { login_as_leader }
   scenario 'deletes through button on index' do
     name = 'Justine Troyke'
     pass = 'password '

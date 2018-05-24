@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-describe 'manager can add ingredients through /ingredients/new' do
+describe 'leader can add ingredients through /ingredients/new' do
+  before { login_as_leader }
   scenario 'sees new ingredients form' do
     button = 'Save and Add More Ingredients'
     button_2 = 'Create Ingredient'
@@ -12,7 +13,7 @@ describe 'manager can add ingredients through /ingredients/new' do
     expect(page).to have_field('ingredient[item]')
   end
 
-  scenario 'manager adds new ingredient and directs to show' do
+  scenario 'leader adds new ingredient and directs to show' do
     item = 'Onion'
     heading = 'Available Ingredients'
     button_2 = 'Create Ingredient'
@@ -26,7 +27,7 @@ describe 'manager can add ingredients through /ingredients/new' do
     expect(page).to have_content heading
   end
 
-  scenario 'manager adds new ingredient and clicks add more' do
+  scenario 'leader adds new ingredient and clicks add more' do
     item = 'Onion'
     item_2 = 'Honey soy marinade'
     button = 'Save and Add More Ingredients'
@@ -48,7 +49,7 @@ describe 'manager can add ingredients through /ingredients/new' do
     expect(page).to have_content item_2
   end
 
-  scenario 'manager gets error message when no item is entered' do
+  scenario 'leader gets error message when no item is entered' do
     error_message = "Really!? there is only one field to complete... try again!"
     button = 'Save and Add More Ingredients'
     button_2 = 'Create Ingredient'

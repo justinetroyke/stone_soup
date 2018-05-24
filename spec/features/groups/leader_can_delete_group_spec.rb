@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-describe 'manager can delete groups' do
+describe 'leader can delete groups' do
+  before { login_as_leader }
+
   scenario 'deletes through button on index' do
     title = 'Chicken Broccoli'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'

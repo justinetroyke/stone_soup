@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-describe 'manager can delete ingredients' do
+describe 'leader can delete ingredients' do
+  before { login_as_leader }
   scenario 'deletes through button on index' do
     item = 'Onino'
     item_2 = 'Onion'

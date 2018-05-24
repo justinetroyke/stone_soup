@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-describe 'manager can assign ingredients once group has members' do
-  scenario 'it should show assignments on group page' do
+describe 'leader can add members to group through' do
+  before { login_as_leader }
+  scenario 'leader adds members to group and directs to index' do
     title = 'Chicken Broccoli'
     directions = 'dump everything into pan, bake @ 350 degrees for 30 min'
     recipe = Recipe.create!(title: title, directions: directions)
@@ -10,10 +11,10 @@ describe 'manager can assign ingredients once group has members' do
     name3 = 'Pocahantas'
     name4 = 'John Smith'
     pass = 'password'
-    role = 0
-    role2 = 0
-    role3 = 0
-    role4 = 0
+    role = 'member'
+    role2 = 'member'
+    role3 = 'member'
+    role4 = 'member'
     email = 'abc@yo.edu'
     email2 = '123@yo.edu'
     email3 = 'haha@yo.edu'
@@ -25,18 +26,33 @@ describe 'manager can assign ingredients once group has members' do
     title = 'Rice as Nice'
     start = '2018-05-28'
     group = Group.create!(title: title, start: start, recipe_id: recipe.id)
-    GroupMember.create!(group_id: group.id, member_id: member2.id)
-    GroupMember.create!(group_id: group.id, member_id: member3.id)
-    GroupMember.create!(group_id: group.id, member_id: member4.id)
-    GroupMember.create!(group_id: group.id, member_id: member.id)
 
     visit group_path(group)
 
-    click_on 'Assign Ingredients'
+    expect(page).to have_content group.title
+    expect(page).to have_content group.start
 
-    expect(page).to have_content(member.ingredient.item)
-    expect(page).to have_content(member2.ingredient.item)
-    expect(page).to have_content(member3.ingredient.item)
-    expect(page).to have_content(member4.ingredient.item)
+    select(member.name, from: 'Member')
+    click_on 'Add'
+    expect(page).to have_content(GroupMember.last.member.name)
+
+    select(member2.name, from: 'Member')
+    click_on 'Add'
+
+    expect(page).to have_content(GroupMember.last.member.name)
+
+    select(member3.name, from: 'Member')
+    click_on 'Add'
+
+    expect(page).to have_content(GroupMember.last.member.name)
+
+    select(member4.name, from: 'Member')
+    click_on 'Add'
+
+    expect(current_path).to eq group_path(group)
+    expect(page).to have_content member.name
+    expect(page).to have_content member2.name
+    expect(page).to have_content member3.name
+    expect(page).to have_content member4.name
   end
 end
